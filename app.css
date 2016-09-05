@@ -1,7 +1,7 @@
 body {
-    background-color: #EEE;
+    background-color: lightgrey;
 }
-#graph .choice {
+ .choice {
     float: left;
     font-family: arial;
     font-size: 1.5em;
@@ -9,10 +9,10 @@ body {
     text-align: right;
     margin: 8px 5px;
 }
-#graph .bar {
+ .bar {
     width: 0;
     height: 35px;
-    background-color: coral;
+    background-color: grey;
     margin: 5px;
     float: left;
 }
