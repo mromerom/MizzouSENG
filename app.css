@@ -28,6 +28,15 @@ body {
 #graph2 .bar{
     background-color: #428bca;
 }
+#graph3 .bar{
+    background-color: #f0ad4e;
+}
+#graph3 .group:nth-child(2) .bar{
+    background-color: #d9534f;
+}
+#graph3 .group:nth-child(3) .bar{
+    background-color: #428bca;
+}
 
 .group:after {
   content: "";

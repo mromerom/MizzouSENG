@@ -16,11 +16,17 @@
         <div id="graph2">
             <h2>2016 National Democratic Primary</h2>
         </div>
+        <hr>
+        <div id="graph3">
+            <h2>2016 Missouri President: Trump vs. Clinton</h2>
+        </div>        
     </div>
     <script>
         
         var url1 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary";
         var url2 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-democratic-primary";
+        var url3 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-missouri-president-trump-vs-clinton";
+
         function generateGrpah(id,data)
             {
             var candidateBar = d3.select("#"+id).selectAll("div").data(data.estimates),
@@ -56,7 +62,15 @@
                 success: function(data2) {
                     generateGrpah("graph2",data2);
                 }
-            }); 
+            });
+            $.ajax(url3, {
+                dataType: "jsonp",
+                jsonpCallback: "pollsterCallback",
+                cache: true,
+                success: function(data3) {
+                    generateGrpah("graph3",data3);
+                }
+            });             
         });
 
     </script>
