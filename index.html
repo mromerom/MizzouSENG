@@ -8,65 +8,57 @@
 </head>
 <body>
     
-    <div id="graph1"></div>
-    <div id="graph2"></div>
-    
+    <div id="wrapper">
+        <div id="graph1">
+            <h2>2016 National Republican Primary</h2>
+        </div>
+        <hr>
+        <div id="graph2">
+            <h2>2016 National Democratic Primary</h2>
+        </div>
+    </div>
     <script>
         
-        var url = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary";
+        var url1 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary";
         var url2 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-democratic-primary";
-        
-        $.ajax(url, {
-            dataType: "jsonp",
-            jsonpCallback: "pollsterCallback",
-            cache: true,
-            success: function(data) {
-                
-                var candidateBar = d3.select("#graph1").selectAll("div").data(data.estimates),
-                    candidateWrapper = candidateBar.enter().append("div").classed("group", true);
-                
-                candidateWrapper.append("div")
-                    .classed("choice", true)
-                    .text(function(candidate) {
-                        return candidate.choice + " " + candidate.value + "%";
-                    });
-                
-                candidateWrapper.append("div")
-                    .classed("bar", true)
-                    .transition()
-                    .duration(1000)
-                    .style("width", function(candidate) {
-                        return candidate.value * 10 + "px";
-                    });
-                $("#graph1").append('<hr>');
-
-                
+        function generateGrpah(id,data)
+            {
+            var candidateBar = d3.select("#"+id).selectAll("div").data(data.estimates),
+                candidateWrapper = candidateBar.enter().append("div").classed("group", true);
+            
+            candidateWrapper.append("div")
+                .classed("choice", true)
+                .text(function(candidate) {
+                    return candidate.choice + " " + parseFloat(Math.round(candidate.value * 100) / 100).toFixed(2) + "%";
+                });
+            
+            candidateWrapper.append("div")
+                .classed("bar", true)
+                .transition()
+                .duration(1000)
+                .style("width", function(candidate) {
+                    return candidate.value * 10 + "px";
+                });
             }
+        jQuery(document).ready(function($){
+            $.ajax(url1, {
+                dataType: "jsonp",
+                jsonpCallback: "pollsterCallback",
+                cache: true,
+                success: function(data1) {
+                    generateGrpah("graph1",data1);
+                }
+            });
+            $.ajax(url2, {
+                dataType: "jsonp",
+                jsonpCallback: "pollsterCallback",
+                cache: true,
+                success: function(data2) {
+                    generateGrpah("graph2",data2);
+                }
+            }); 
         });
-        $.ajax(url2, {
-            dataType: "jsonp",
-            jsonpCallback: "pollsterCallback",
-            cache: true,
-            success: function(data) {
-                var candidateBar = d3.select("#graph2").selectAll("div").data(data.estimates),
-                    candidateWrapper = candidateBar.enter().append("div").classed("group", true);
-                
-                candidateWrapper.append("div")
-                    .classed("choice", true)
-                    .text(function(candidate) {
-                        return candidate.choice + " " + candidate.value + "%";
-                    });
-                
-                candidateWrapper.append("div")
-                    .classed("bar", true)
-                    .transition()
-                    .duration(1000)
-                    .style("width", function(candidate) {
-                        return candidate.value * 10 + "px";
-                    });
-                
-            }
-        });        
+
     </script>
 </body>
 </html>

@@ -1,6 +1,12 @@
 body {
-    background-color: #EEE;
+    background-color: #eee;
 }
+#wrapper {
+    width: 70%;
+    display:block;
+    margin: 20px auto;
+}
+
 .choice {
     float: left;
     font-family: arial;
@@ -12,13 +18,28 @@ body {
 .bar {
     width: 0;
     height: 35px;
-    background-color: coral;
     margin: 5px;
     float: left;
 }
+
+#graph1 .bar{
+    background-color: #d9534f;
+}
+#graph2 .bar{
+    background-color: #428bca;
+}
+
 .group:after {
   content: "";
   display: table;
   clear: both;
 }
+
+@media only screen and (max-width: 750px) {
+    #wrapper {
+        width: 100%;
+    }
+}
+
+
 
