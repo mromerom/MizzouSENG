@@ -14,26 +14,34 @@
     <div id="graph2"></div>
     <div id="graph3"></div>
 
+    <hr>
+
+    <!-- ctpq8's section -->
+    <div id="ctpq8Wrapper">
+        <div id="ctpq8Graph3">
+            <h2>2016 Missouri President: Trump vs. Clinton</h2>
+        </div>        
+    </div>
+    <!-- ctpq8's section end -->
+
     <script>
+
         var url3 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary";
         var url2 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-democratic-primary";
         var url = "http://elections.huffingtonpost.com/pollster/api/charts/2016-general-election-trump-vs-clinton";
-
+        
         $.ajax(url3, {
             dataType: "jsonp",
             jsonpCallback: "pollsterCallback",
             cache: false,
             success: function(data) {
-
                 var candidateBar = d3.select("#graph3").selectAll("div").data(data.estimates),
                     candidateWrapper = candidateBar.enter().append("div").classed("group", true);
-
                 candidateWrapper.append("div")
                     .classed("choice", true)
                     .text(function(candidate) {
                         return candidate.choice + " " + Math.round(candidate.value * 100) / 100 + "%";
                     });
-
                 candidateWrapper.append("div")
                     .classed("bar", true)
                     .transition()
@@ -41,11 +49,8 @@
                     .style("width", function(candidate) {
                         return candidate.value * 10 + "px";
                     });
-
                 d3.select("#graph3").selectAll(".group").select(".bar").style("background-color", "red");
-
                 $("#graph1").append('<hr>');
-
             }
         });
         $.ajax(url2, {
@@ -55,13 +60,11 @@
             success: function(data) {
                 var candidateBar = d3.select("#graph2").selectAll("div").data(data.estimates),
                     candidateWrapper = candidateBar.enter().append("div").classed("group", true);
-
                 candidateWrapper.append("div")
                     .classed("choice", true)
                     .text(function(candidate) {
                         return candidate.choice + " " + Math.round(candidate.value * 100) / 100 + "%";
                     });
-
                 candidateWrapper.append("div")
                     .classed("bar", true)
                     .transition()
@@ -69,14 +72,10 @@
                     .style("width", function(candidate) {
                         return candidate.value * 10 + "px";
                     });
-
                 d3.select("#graph2").selectAll(".group").select(".bar").style("background-color", "blue");
-
                 $("#graph2").append('<hr>');
-
             }
         });
-
         $.ajax(url, {
             dataType: "jsonp",
             jsonpCallback: "pollsterCallback",
@@ -84,13 +83,11 @@
             success: function(data) {
                 var candidateBar = d3.select("#graph1").selectAll("div").data(data.estimates),
                     candidateWrapper = candidateBar.enter().append("div").classed("group", true);
-
                 candidateWrapper.append("div")
                     .classed("choice", true)
                     .text(function(candidate) {
                         return candidate.choice + " " + Math.round(candidate.value * 100) / 100 + "%";
                     });
-
                 candidateWrapper.append("div")
                     .classed("bar", true)
                     .transition()
@@ -98,11 +95,40 @@
                     .style("width", function(candidate) {
                         return candidate.value * 10 + "px";
                     });
-
                 d3.select("#graph1").selectAll(".group").select(".bar").style("background-color", "grey");
-
             }
         });
+        
+
+        function generateGrpah(id,data)
+            {
+            var candidateBar = d3.select("#"+id).selectAll("div").data(data.estimates),
+                candidateWrapper = candidateBar.enter().append("div").classed("group", true);
+            
+            candidateWrapper.append("div")
+                .classed("choice", true)
+                .text(function(candidate) {
+                    return candidate.choice + " " + parseFloat(Math.round(candidate.value * 100) / 100).toFixed(2) + "%";
+                });
+            
+            candidateWrapper.append("div")
+                .classed("bar", true)
+                .transition()
+                .duration(1000)
+                .style("width", function(candidate) {
+                    return candidate.value * 10 + "px";
+                });
+            }
+
+        $.ajax("http://elections.huffingtonpost.com/pollster/api/charts/2016-missouri-president-trump-vs-clinton", {
+            dataType: "jsonp",
+            jsonpCallback: "pollsterCallback",
+            cache: true,
+            success: function(data3) {
+                generateGrpah("ctpq8Graph3",data3);
+            }
+        });             
+
     </script>
 </body>
 

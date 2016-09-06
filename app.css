@@ -1,6 +1,12 @@
 body {
-    background-color: #EEE;
+    background-color: #eee;
 }
+#ctpq8Wrapper {
+    width: 70%;
+    display:block;
+    margin: 20px auto;
+}
+
 .choice {
     float: left;
     font-family: arial;
@@ -15,8 +21,33 @@ body {
     margin: 5px;
     float: left;
 }
+
+#ctpq8Graph1 .bar{
+    background-color: #d9534f;
+}
+#ctpq8Graph2 .bar{
+    background-color: #428bca;
+}
+#ctpq8Graph3 .bar{
+    background-color: #f0ad4e;
+}
+#ctpq8Graph3 .group:nth-child(2) .bar{
+    background-color: #d9534f;
+}
+#ctpq8Graph3 .group:nth-child(3) .bar{
+    background-color: #428bca;
+}
+
 .group:after {
   content: "";
   display: table;
   clear: both;
 }
+
+@media only screen and (max-width: 750px) {
+    #ctpq8Wrapper {
+        width: 100%;
+    }
+}
+
+
