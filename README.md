@@ -4,7 +4,7 @@ This project is meant to show different graphs related to the 2016 presidential 
 
 ###Visualization
 
-mjrqq3: I added a graph to show the status of the 2016 Presidential Race between Hillary Clinton and Donal Trump.
+mjrqq3: I added a graph to show the status of the 2016 Presidential Race between Hillary Clinton and Donal Trump, as well as the Democratic Primary graph. I changed the colors in the Republican Primary and Democratic Primary graphs to match those of the parties they represent.
 
 ctpq8: I added a graph; 2016 Missouri President: Trump vs. Clinton. The red bar is for Republican's candidates and the blue bar is for Democratic's candidates.
 
