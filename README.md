@@ -3,13 +3,17 @@
 This project is meant to show different graphs related to the 2016 presidential election.
 
 
-**Visualization
 
 
-This index contains two graphs, green bar is 2016-national-gop-primary, pink bar is 2016-national-democratic-primary.**
+Visualization
 
 
-*Tool Used
+This index contains two graphs, green bar is 2016-national-gop-primary, pink bar is 2016-national-democratic-primary.
+
+
+
+
+Tool Used
 
 
 [Huffington Post's API]http://elections.huffingtonpost.com/pollster/api
@@ -18,4 +22,4 @@ This index contains two graphs, green bar is 2016-national-gop-primary, pink bar
 [jQuery]https://jquery.com
 
 
-[D3.js]https://d3js.org*
+[D3.js]https://d3js.org
