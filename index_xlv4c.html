@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Presidential Primary Data 2016</title>
+    <link href="app.css" rel="stylesheet" type="text/css">
+    <script src="jquery-1.12.0.min.js"></script>
+    <script src="d3.v3.min.js"></script>
+</head>
+<body>
+
+  <div id="graphxlv4c1"></div>
+  <div id="graphxlv4c2"></div>
+
+    <script>
+
+        var urlxlv4c1 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-gop-primary";
+        var urlxlv4c2 = "http://elections.huffingtonpost.com/pollster/api/charts/2016-national-democratic-primary";
+
+        $.ajax(urlxlv4c1, {
+            dataType: "jsonp",
+            jsonpCallback: "pollsterCallback",
+            cache: true,
+            success: function(data) {
+
+                var candidateBar = d3.select("#graphxlv4c1").selectAll("div").data(data.estimates),
+                    candidateWrapper = candidateBar.enter().append("div").classed("group", true);
+
+                candidateWrapper.append("div")
+                    .classed("choice", true)
+                    .text(function(candidate) {
+                        return candidate.choice + " " + Math.round(candidate.value*100)/100 + "%";
+                    });
+
+                candidateWrapper.append("div")
+                    .classed("bar", true)
+                    .transition()
+                    .duration(1000)
+                    .style("width", function(candidate) {
+                        return candidate.value * 10 + "px";
+                    });
+                    d3.select("#graphxlv4c1").selectAll(".group").select(".bar").style("background-color", "lightgreen");
+            }
+        });
+        $.ajax(urlxlv4c2, {
+            dataType: "jsonp",
+            jsonpCallback: "pollsterCallback",
+            cache: true,
+            success: function(data) {
+
+                var candidateBar = d3.select("#graphxlv4c2").selectAll("div").data(data.estimates),
+                    candidateWrapper = candidateBar.enter().append("div").classed("group", true);
+
+                candidateWrapper.append("div")
+                    .classed("choice", true)
+                    .text(function(candidate) {
+                        return candidate.choice + " " + Math.round(candidate.value*100)/100 + "%";
+                    });
+
+                candidateWrapper.append("div")
+                    .classed("bar", true)
+                    .transition()
+                    .duration(1000)
+                    .style("width", function(candidate) {
+                        return candidate.value * 10 + "px";
+                    });
+                    d3.select("#graphxlv4c2").selectAll(".group").select(".bar").style("background-color", "pink");
+            }
+        });
+
+    </script>
+
+</body>
+</html>
