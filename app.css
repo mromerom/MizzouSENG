@@ -12,7 +12,6 @@ body {
 .bar {
     width: 0;
     height: 35px;
-    background-color: coral;
     margin: 5px;
     float: left;
 }
