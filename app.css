@@ -1,5 +1,5 @@
 body {
-    background-color: #EEE;
+    background-color:#EEE;
 }
 .choice {
     float: left;
@@ -10,8 +10,16 @@ body {
     margin: 8px 5px;
 }
 .bar {
+  width: 0;
+  height: 35px;
+  background-color: green;
+  margin: 5px;
+  float: left;
+}
+.bar {
     width: 0;
     height: 35px;
+    background-color: pink;
     margin: 5px;
     float: left;
 }
